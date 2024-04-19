@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+int n;
+int divSum(int n)
+{
+	int sum=0;
+	if(n==1) return sum;
+	for(int i=1;i<=sqrt(n);i++)
+	{
+		if(n%i==0)
+		{
+			sum+=i;
+			if(i!=n/i) sum+=n/i;
+		}
+	}
+	return sum-n;
+}
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		cin >> n;
+		cout << divSum(n) << endl;
+	}
+}

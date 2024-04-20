@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+main()
+{
+	int n;
+	char s[205];
+	while(cin >> n && n!=0)
+	{
+		cin >> s;
+		int len=strlen(s);
+		int row=len/n;
+		int k=0, flag=0;
+		char a[row+1][len+1];
+		for(int i=0;i<row;i++)
+		{
+			if(flag==0)
+			{
+				for(int j=0;j<n;j++)
+				{
+					a[i][j]=s[k++];
+				}
+				flag=1;
+			}else
+			{
+				for(int j=0;j<n;j++)
+				{
+					a[i][n-j-1]=s[k++];
+				}
+				flag=0;
+			}
+		}
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<row;j++)
+			{
+				cout << a[j][i];
+			}
+		}
+		cout << '\n';
+	}
+}

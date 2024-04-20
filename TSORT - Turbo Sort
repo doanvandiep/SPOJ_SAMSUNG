@@ -53,3 +53,22 @@ main()
 		cout << a[i] << '\n';
 	}
 }
+//Hoặc dùng cách này
+//#include<bits/stdc++.h>
+//#define maxn 1000006
+//using namespace std;
+//int a[maxn];
+//main()
+//{
+//	int t;
+//	cin >> t;
+//	while(t--)
+//	{
+//		int n;
+//		cin >> n;
+//		for(int i=0;i<n;i++) cin >> a[i];
+//		sort(a, a+n);
+//		for(int i=0;i<n;i++) cout << a[i] << " ";
+//		cout << endl;
+//	}
+//}

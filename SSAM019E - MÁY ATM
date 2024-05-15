@@ -19,14 +19,13 @@ void Try(int i, int cnt)
 	if(i==cnt&&sum!=S) return;
 	for(int j=1;j<=n;j++)
 	{
-		if(j>check[i-1])
+		if(check[j]==0)
 		{
-			check[i]=j;
+			check[j]=1;
 			sum+=a[j];
 			if(sum<=S) Try(i+1, cnt);
 			sum-=a[j];
-			check[i]=0;
-			
+			check[j]=0;			
 		}
 	}
 }

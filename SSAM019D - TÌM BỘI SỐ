@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<vector<int> > vt;
+const ll mod = 1e9 + 7;
+const int oo = 1e6 + 7;
+int n;
+void Solve()
+{
+	queue<ll> q;
+	q.push(9);
+	while(1)
+	{
+		if(q.front()%n==0)
+		{
+			cout << q.front() << endl;
+			break;
+		}else
+		{
+			q.push(q.front()*10);
+			q.push(q.front()*10+9);
+			q.pop();
+		}
+	}
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    int t; cin >> t;
+    while(t--)
+	{
+		cin >> n;
+		Solve();
+    }
+    return 0;
+}

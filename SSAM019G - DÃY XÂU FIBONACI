@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<vector<int> > vt;
+const ll mod = 1e9 + 7;
+const int oo = 1e6 + 7;
+#define maxn 93
+ll a[maxn];
+ll n, i;
+void Try()
+{
+	
+	while(n>2)
+	{
+		if(i<=a[n-2]) n-=2;
+		else
+		{
+			i-=a[n-2];
+			n-=1;
+		}
+	}
+	if(n==1) cout << 'A' << '\n';
+	else cout << 'B' << '\n';
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    int t; cin >> t;
+    a[1]=1;
+	a[2]=1;
+	for(int i=3;i<=93;i++) a[i]=a[i-1]+a[i-2];
+    while(t--)
+	{
+		cin >> n >> i;
+		Try();
+    }
+    return 0;
+}

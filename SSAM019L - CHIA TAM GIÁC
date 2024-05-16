@@ -1,0 +1,26 @@
+#include<iostream>
+#include<cmath>
+#include<stack>
+#include<string>
+#include<vector>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		double n, h;
+		cin >> n >> h;
+		for(int i=1;i<n;i++)
+		{
+			double k=sqrt(i/n)*h;
+			cout << fixed << setprecision(6) << k << " ";
+		}
+		cout << endl;
+	}
+}

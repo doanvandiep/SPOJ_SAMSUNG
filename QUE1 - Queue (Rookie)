@@ -1,0 +1,36 @@
+#include<iostream>
+#include<cmath>
+#include<algorithm>
+#define maxn 1001
+using namespace std;
+int a[maxn];
+int high[maxn];
+int pos[maxn];
+int main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		int n;
+		cin >> n;
+		for(int i=0;i<n;i++) cin >> a[i];
+		for(int i=0;i<n;i++) cin >> high[a[i]];
+		memset(pos, 0 , sizeof(pos));
+		sort(a, a+n);
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				if(high[a[i]]==0&&pos[j]==0)
+				{
+					pos[j]=a[i];
+					break;
+				}
+				if(pos[j]==0) high[a[i]]--; 
+			}
+		}
+		for(int i=0;i<n;i++) cout << pos[i] << " ";
+		cout << endl;
+	}
+}

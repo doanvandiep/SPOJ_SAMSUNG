@@ -1,0 +1,37 @@
+#include<iostream>
+#include<cmath>
+#include<algorithm>
+#include<string>
+#define mod 1000000007
+
+using namespace std;
+// tư tưởng là duyệt bình thường đến sqrt(n)
+// đoạn sau thì y chạy từ sqrt(n)-1 -> 1;
+
+int main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		long long n;
+		cin >> n;
+		long long sum=0;
+		long long i;
+		for(i=1;i*i<=n;i++)
+		{
+			sum=(sum+(i*(n/i)%mod))%mod;
+		}
+		i--;
+		long long last = n/i;
+		for(i=last-1;i>=1;i--)
+		{
+			long long end = n/i;
+			long long start = n/(i+1);
+			long long diff = ((end+1)*end/2)-((start+1)*start/2);
+			sum=(sum+(i*diff)%mod)%mod;
+		}
+		cout << sum << endl;
+	}
+	system("pause");
+}

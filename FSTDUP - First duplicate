@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<vector<int> > vt;
+const ll mod = 1e9 + 7;
+const int oo = 1e6 + 7;
+#define maxn 100005
+int A[maxn];
+int a[maxn];
+int n;
+int Solve()
+{
+	memset(A, 0, sizeof(A));
+	for(int i=0;i<n;i++)
+	{
+		if(A[a[i]]==1) return a[i];
+		else A[a[i]]++;
+	}
+	return -1;
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    int t; cin >> t;
+    int i=1;
+    while(t--)
+	{
+		cin >> n;
+		for(int i=0;i<n;i++) cin >> a[i];
+		cout << "#" << i << " ";
+		cout << Solve() << endl;
+		i++;
+    }
+    return 0;
+}

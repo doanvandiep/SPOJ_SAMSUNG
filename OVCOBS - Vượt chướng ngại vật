@@ -1,0 +1,42 @@
+#include<iostream>
+
+using namespace std;
+int N, x, y;
+int a[101][101];
+int dx[8]={-1, -1, -1, 0, 1, 1, 1, 0};
+int dy[8]={-1, 0, 1, 1, 1, 0, -1, -1};
+int main(){
+	//freopen("input.txt", "r", stdin);
+	int t;
+	cin >> t;
+	for(int test=1; test<=t; test++){	
+		cin >> N >> x >> y;
+		for(int i=0;i<N;i++){
+			for(int j=0;j<N;j++){
+				cin >> a[i][j];
+			}
+		}
+		int cnt=0;
+		while(true){
+			int current_height=a[x][y];
+			int min_height=1000000;
+			int next_x=-1, next_y=-1;
+			for(int k=0;k<8;k++){
+				if(x+dx[k]>=0&&x+dx[k]<N&&y+dy[k]>=0&&y+dy[k]<N){
+					int next_height=a[x+dx[k]][y+dy[k]];
+					if(next_height>current_height&&next_height<min_height){
+						min_height=next_height;
+						next_x=x+dx[k];
+						next_y=y+dy[k];
+					}
+				}
+			}
+			if(next_x==-1) break;
+			x=next_x;
+			y=next_y;
+			cnt++;
+		}
+		cout << "#" << test << " " << cnt << endl;
+	}
+	return 0;
+}

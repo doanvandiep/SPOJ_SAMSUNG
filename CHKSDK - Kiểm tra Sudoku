@@ -1,0 +1,52 @@
+#include<iostream>
+
+using namespace std;
+
+char map[10][10];
+
+int check(int idx, bool b){
+	int cnt[10]={0};
+	for(int i=0;i<9;i++){
+		char val= (b==true)? map[idx][i] : map[i][idx];
+		if(val!='.'){
+			int x=int(val-'0');
+			if(x>0 && cnt[x]>0) return 0;
+			else cnt[x]++;
+		}
+	}
+	return 1;
+}
+int checkMatrix(int r, int c){
+	int cnt[10]={0};
+	for(int i=r;i<r+3;i++){	
+		for(int j=c;j<c+3;j++){
+			if(map[i][j]!='.'){
+				int val=map[i][j]-'0';
+				if(val>0&&cnt[val]>0) return 0;
+				else cnt[val]++;
+			}
+		}
+	}
+	return 1;
+}
+int main(){
+	//freopen("input.txt", "r", stdin);
+	int t; cin >> t;
+	for(int test=1; test<=t; test++){
+		for(int i=0;i<9;i++){
+			for(int j=0;j<9;j++){
+				cin >> map[i][j];
+			}
+		}
+		int ok=0;
+		for(int i=0;i<9;i++) if(!check(i, true)||!check(i, false)) ok=1;
+		for(int i=0;i<=6;i+=3){
+			for(int j=0;j<=6;j+=3){
+				if(!checkMatrix(i, j)) ok=1;
+			}
+		}
+		if(ok==1) cout << "#" << test << " " << 0 << endl;
+		else cout << "#" << test << " " << 1 << endl;		
+	}
+	return 0;
+}

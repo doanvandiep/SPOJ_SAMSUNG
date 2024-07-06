@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+int map[101][101];
+int main() {
+	//freopen("input.txt", "r", stdin);
+    int t, h, w, m, n;
+    cin >> t;
+    for (int test=1; test <= t; ++test) {
+        cin >> h >> w >> m >> n;
+		int maxsum=-10;
+        for(int i=0;i<m;i++){
+			for(int j=0;j<n;j++){
+				cin >> map[i][j];
+			}
+		}
+		for(int i=0;i<=m-h;i++){
+			for(int j=0;j<=n-w;j++){
+				int sum=0;
+				for(int row=i; row<i+h; ++row){
+					if(row==i||row==i+h-1){
+						for(int k=j; k<j+w;k++){
+							if(map[row][k]%2==0) sum+=map[row][k];
+						}
+					}else{
+						if(map[row][j]%2==0) sum+=map[row][j];
+						if(map[row][j+w-1]%2==0) sum+=map[row][j+w-1];
+					}
+				}
+				maxsum=max(sum, maxsum);
+			}
+		}
+
+        cout << "#" << test << " " << maxsum << endl;
+    }
+
+    return 0;
+}

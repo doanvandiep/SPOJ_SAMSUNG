@@ -1,0 +1,77 @@
+#include <iostream>
+
+using namespace std;
+
+long long map[501][501];
+long long n, m;
+int huongPacman, huongMa;
+int dx[4] = {-1, 0, 1, 0}; //tren phai duoi trai
+int dy[4] = {0, 1, 0, -1};
+
+int re_trai[4] = {3, 0, 1, 2};
+int re_phai[4] = {1, 2, 3, 0};
+char Pacman[501], Ma[501];
+long long vangPacman, vangMa;
+
+bool isValid(int x, int y) {
+    return x >= 0 && y >= 0 && x < n && y < n;
+}
+
+void solve() {
+    huongPacman = 2; // huong di xuong
+    huongMa = 0;     // huong di len
+    vangPacman = 0, vangMa = 0;
+    int stPacmanx = 0, stPacmany = 0;
+    int stMax = n - 1, stMay = n - 1;
+
+    for (int i = 0; i < m; i++) {
+        if (Pacman[i] == 'L') {
+            huongPacman = re_trai[huongPacman];
+        } else if(Pacman[i]=='R') {
+            huongPacman = re_phai[huongPacman];
+        }
+        int newPacmanx = stPacmanx + dx[huongPacman];
+        int newPacmany = stPacmany + dy[huongPacman];
+        if (isValid(newPacmanx, newPacmany)) {
+            stPacmanx = newPacmanx;
+            stPacmany = newPacmany;
+        }
+        
+        if (Ma[i] == 'L') {
+            huongMa = re_trai[huongMa];
+        } else if(Ma[i]=='R') {
+            huongMa = re_phai[huongMa];
+        }
+        int newMax = stMax + dx[huongMa];
+        int newMay = stMay + dy[huongMa];
+        if (isValid(newMax, newMay)) {
+            stMax = newMax;
+            stMay = newMay;
+        }
+
+        if (stMax == stPacmanx && stMay == stPacmany) break;
+        
+        vangPacman += map[stPacmanx][stPacmany];
+        map[stPacmanx][stPacmany] = 0;
+        
+        vangMa += map[stMax][stMay];
+        map[stMax][stMay] = 0;
+    }
+}
+
+int main() {
+   // freopen("input.txt", "r", stdin);
+    int t; cin >> t;
+    for (int test = 1; test <= t; test++) {
+        cin >> n >> m;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> map[i][j];
+            }
+        }
+        cin >> Pacman >> Ma;
+        solve();
+        cout << "#" << test << " " << vangPacman << " " << vangMa << endl;
+    }
+    return 0;
+}
